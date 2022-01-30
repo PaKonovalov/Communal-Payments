@@ -1,80 +1,130 @@
 import java.util.Scanner;
 
     public class Main {
+        private static int object;
+
+//============================== Gas data ==============================
+
+        private static int lastInducatGas;
+        private static int newInducatGas;
+        private static double gasPricePerCub = 6.55900;
+
+//============================= Water data =============================
+
+        private static int lastInducatWater;
+        private static int newInducatWater;
+        private static int consumptionOfCubForWater;
+        private static double toPayForCommunService;
+        private static double coldWater;
+        private static double amountOfUtilityRes = 0.1146;
+        private static double communalTariffPerColdWater = 67.48;
+        private static double communalTariffPerWasteWaterTransp = 17.95;
+        private static double communalTariffWasteWaterTreatment = 27.19;
+        private static double garbageSadovaya = 103.89;
+        private static double garbageShaposhnikova = 105.62;
+        private static double majorRepairs = 360.10;
+
+//========================== Electricity data ==========================
+
+        private static int lastInducatioElectricity;
+        private static int newInducationElectricity;
+        private static double electricConsumption;
+        private static double toPayForElectric;
+        private static int socialNormForElectricitySadovaya = 96;
+        private static int socialNormForElectricityShaposhnikova = 236;
+        private static double electricityTariffWithinNormalLimits = 4.25;
+        private static double electricityTariffIsHigherThanNormal = 5.95;
+
+//=======================================================================
+
         public static void main(String[] args) {
-            double garbageSadovaya = 103.89;
-            double garbageShaposhnikova = 105.62;
-            int socialNormForElectricitySadovaya = 96;
-            int socialNormForElectricityShaposhnikova = 236;
-            double majorRepairs = 360.10;
-            double gasPricePerCubM = 6.55900;
-            double amountOfUtilityRes = 0.1146;
-            double communalTariffPerColdWater = 67.48;
-            double communalTariffPerWasteWaterTransp = 17.95;
-            double communalTariffWasteWaterTreatment = 27.19;
-            double electricityTariffWithinNormalLimits = 4.25;
-            double electricityTariffIsHigherThanNormal = 5.95;
-            Scanner input = new Scanner(System.in);
             System.out.print("Введите номер объекта (Садовая 1 - 1; Шапошникова 7 - 2): ");
-            int object = input.nextInt();
+            object = (new Scanner(System.in)).nextInt();
+
             System.out.print("Введите предыдущие показания за газ: ");
-            int lastInducationGas = input.nextInt();
+            lastInducatGas = (new Scanner(System.in)).nextInt();
             System.out.print("Введите текущие показания за газ: ");
-            int newInducationGas = input.nextInt();
+            newInducatGas = (new Scanner(System.in)).nextInt();
+
             System.out.print("Введите предыдущие показания за воду: ");
-            int lastInducationWater = input.nextInt();
+            lastInducatWater = (new Scanner(System.in)).nextInt();
             System.out.print("Введите текущие показания за воду: ");
-            int newInducationWater = input.nextInt();
+            newInducatWater = (new Scanner(System.in)).nextInt();
+
             System.out.print("Введите предыдущие показания за свет: ");
-            int lastInducatioElectricity = input.nextInt();
+            lastInducatioElectricity = (new Scanner(System.in)).nextInt();
             System.out.print("Введите текущие показания за свет: ");
-            int newInducationElectricity = input.nextInt();
+            newInducationElectricity = (new Scanner(System.in)).nextInt();
 
+            gas();
+            water();
+            electricity();
+        }
+
+        private static void gas() {
             if (object == 1 || object == 2) {
-                int consumptionOfcubesGas = newInducationGas - lastInducationGas;
-                double toPayForGas = consumptionOfcubesGas * gasPricePerCubM;
-                System.out.println("Газа израсходованно - " + consumptionOfcubesGas + " куб.," + " к оплате за газ - " + toPayForGas + " руб.");
+                int consumptionOfCubGas = newInducatGas - lastInducatGas;
+                double toPayForGas = consumptionOfCubGas * gasPricePerCub;
+                System.out.println("Газа израсходовано - " + consumptionOfCubGas + " куб.," + " к оплате за газ - " + toPayForGas + " руб.");
             }
-            if (object == 1) {
-                int consumptionOfcubesForWater = newInducationWater - lastInducationWater;
-                double coldWater = (consumptionOfcubesForWater + amountOfUtilityRes) * communalTariffPerColdWater;
-                double wasteWaterTransp = (consumptionOfcubesForWater + amountOfUtilityRes) * communalTariffPerWasteWaterTransp;
-                double wasteWaterTreatment = (consumptionOfcubesForWater + amountOfUtilityRes) * communalTariffWasteWaterTreatment;
+        }
 
-                double toPayForCommunService = coldWater + wasteWaterTreatment + wasteWaterTransp + garbageSadovaya + majorRepairs;
-                System.out.println("Стоимость Хол.Вода: " + coldWater + '\n' + "Стоимость ТрансСтВод: " + wasteWaterTransp + '\n' +
-                                   "Стоимость ОчистСтХВ: " +  wasteWaterTreatment + '\n' + "Стоимость Обращение с ТКО: " + garbageSadovaya + '\n' +
-                                   "Ежемес.взнос кап.рем.: " + majorRepairs);
-                System.out.println("Воды израсходованно - " + consumptionOfcubesForWater + " куб.," + " к оплате за коммунальные услуги - " + toPayForCommunService + " руб.");
-            }
-            if (object == 2) {
-                int consumptionOfcubesForWater = newInducationWater - lastInducationWater;
-                double coldWater = (consumptionOfcubesForWater + amountOfUtilityRes) * communalTariffPerColdWater;
-                double toPayForCommunService = coldWater + garbageShaposhnikova;
-                System.out.println("Стоимость Хол.Вода: " + coldWater + '\n' +  "Стоимость Обращение с ТКО: " + garbageShaposhnikova);
-                System.out.println("Воды израсходованно - " + consumptionOfcubesForWater + " куб.," + " к оплате за коммунальные услуги - " + toPayForCommunService + " руб.");
-            }
+        private static void printWater() {
+            System.out.println("Воды израсходовано - " + consumptionOfCubForWater + " куб.," + " к оплате за коммунальные услуги - " + toPayForCommunService + " руб.");
+        }
+
+        private static void waterPrice() {
+            consumptionOfCubForWater = newInducatWater - lastInducatWater;
+            coldWater = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffPerColdWater;
+        }
+
+        private static void water() {
+
             if (object == 1) {
-                double electrСonsumption = newInducationElectricity - lastInducatioElectricity;
-                if (electrСonsumption <= socialNormForElectricitySadovaya) {
-                    double toPayForelEctricity = electrСonsumption * electricityTariffWithinNormalLimits;
-                    System.out.println("Электроэнергии израсходованно - " + electrСonsumption + " кВт.," + " к оплате за электроэнергию - " + toPayForelEctricity + " руб.");
-                } else {
-                    double excessСonsumEctricity = electrСonsumption - socialNormForElectricitySadovaya;
-                    double toPayForelEctricity = (excessСonsumEctricity * electricityTariffIsHigherThanNormal) + (socialNormForElectricitySadovaya * electricityTariffWithinNormalLimits);
-                    System.out.println("Электроэнергии израсходованно - " + electrСonsumption + " кВт.," + " к оплате за электроэнергию - " + toPayForelEctricity + " руб.");
-                }
+                waterPrice();
+                double wasteWaterTransp = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffPerWasteWaterTransp;
+                double wasteWaterTreatment = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffWasteWaterTreatment;
+
+                toPayForCommunService = coldWater + wasteWaterTreatment + wasteWaterTransp + garbageSadovaya + majorRepairs;
+                System.out.println("Стоимость Хол.Вода: " + coldWater + '\n' + "Стоимость ТрансСтВод: " + wasteWaterTransp + '\n' +
+                        "Стоимость ОчистСтХВ: " + wasteWaterTreatment + '\n' + "Стоимость Обращение с ТКО: " + garbageSadovaya + '\n' +
+                        "Ежемес.взнос кап.рем.: " + majorRepairs);
+                printWater();
             }
             if (object == 2) {
-                double electrСonsumption = newInducationElectricity - lastInducatioElectricity;
-                if (electrСonsumption <= socialNormForElectricityShaposhnikova) {
-                    double toPayForelEctricity = electrСonsumption * electricityTariffWithinNormalLimits;
-                    System.out.println("Электроэнергии израсходованно - " + electrСonsumption + " кВт.," + " к оплате за электроэнергию - " + toPayForelEctricity + " руб.");
+                waterPrice();
+                toPayForCommunService = coldWater + garbageShaposhnikova;
+                System.out.println("Стоимость Хол.Вода: " + coldWater + '\n' + "Стоимость Обращение с ТКО: " + garbageShaposhnikova);
+                printWater();
+            }
+        }
+
+        public static void electricityPrint() {
+            System.out.println("Электроэнергии израсходовано - " + electricConsumption + " кВт.," + " к оплате за электроэнергию - " + toPayForElectric + " руб.");
+        }
+
+        private static void electricity() {
+            if (object == 1) {
+                electricConsumption = newInducationElectricity - lastInducatioElectricity;
+                if (electricConsumption <= socialNormForElectricitySadovaya) {
+                    toPayForElectric = electricConsumption * electricityTariffWithinNormalLimits;
+                    electricityPrint();
+                } else {
+                    double excessConsumptionElectric = electricConsumption - socialNormForElectricitySadovaya;
+                    toPayForElectric = (excessConsumptionElectric * electricityTariffIsHigherThanNormal) + (socialNormForElectricitySadovaya * electricityTariffWithinNormalLimits);
+                    electricityPrint();
                 }
-                else {
-                    double excessСonsumptionEctricity = electrСonsumption - socialNormForElectricityShaposhnikova;
-                    double toPayForelEctricity = (excessСonsumptionEctricity * electricityTariffIsHigherThanNormal) + (socialNormForElectricityShaposhnikova * electricityTariffWithinNormalLimits);
-                    System.out.println("Электроэнергии израсходованно - " + electrСonsumption + " кВт.," + " к оплате за электроэнергию - " + toPayForelEctricity + " руб.");
+            }
+
+            if (object == 2) {
+                electricConsumption = newInducationElectricity - lastInducatioElectricity;
+                if (electricConsumption <= socialNormForElectricityShaposhnikova) {
+                    toPayForElectric = electricConsumption * electricityTariffWithinNormalLimits;
+                    electricityPrint();
+                } else {
+                    double excessConsumptionElectric = electricConsumption - socialNormForElectricityShaposhnikova;
+                    toPayForElectric = (excessConsumptionElectric * electricityTariffIsHigherThanNormal) + (socialNormForElectricityShaposhnikova * electricityTariffWithinNormalLimits);
+                    electricityPrint();
                 }
             }
         }
