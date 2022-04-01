@@ -25,12 +25,14 @@ import java.util.Scanner;
         private static double majorRepairs = 360.10;
 
 //========================== Electricity data ==========================
+//TODO При оплате за электро энергию учитесть показатель "socialNormForElectricitySadovaya"
+// т.к. при смене времени года меняется норма расхода в пределах социальной нормы
 
         private static int lastInducatioElectricity;
         private static int newInducationElectricity;
         private static double electricConsumption;
         private static double toPayForElectric;
-        private static int socialNormForElectricitySadovaya = 96;
+        private static int socialNormForElectricitySadovaya = 86;
         private static int socialNormForElectricityShaposhnikova = 236;
         private static double electricityTariffWithinNormalLimits = 4.25;
         private static double electricityTariffIsHigherThanNormal = 5.95;
