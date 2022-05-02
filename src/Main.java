@@ -17,12 +17,12 @@ import java.util.Scanner;
         private static double toPayForCommunService;
         private static double coldWater;
         private static double amountOfUtilityRes = 0.1146;
-        private static double communalTariffPerColdWater = 67.48;
+        private static double communalTariffPerColdWater = 61.33;
         private static double communalTariffPerWasteWaterTransp = 17.95;
         private static double communalTariffWasteWaterTreatment = 27.19;
         private static double garbageSadovaya = 103.89;
         private static double garbageShaposhnikova = 105.62;
-        private static double majorRepairs = 360.10;
+        private static double majorRepairs = 457.74;
 
 //========================== Electricity data ==========================
 //TODO При оплате за электро энергию учитесть показатель "socialNormForElectricitySadovaya"
