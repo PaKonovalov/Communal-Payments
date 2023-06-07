@@ -3,13 +3,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+
     private static int object;
 
 //============================== Gas data ==============================
 
     private static int lastInducatGas;
     private static int newInducatGas;
-    private static final double gasPricePerCub = 6.75900;
+    private static final double gasPricePerCub = 7.328;
 
 //============================= Water data =============================
 
