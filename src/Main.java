@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static int object;
+    private static int paymentAddress;
 
 //============================== Gas data ==============================
 
@@ -21,10 +21,10 @@ public class Main {
     private static double coldWater;
     private static final double amountOfUtilityRes = 0.1146;
     private static final double communalTariffPerColdWater = 61.33;
-    private static final double communalTariffPerWasteWaterTransp = 18.91;
-    private static final double communalTariffWasteWaterTreatment = 28.65;
-    private static final double garbageSadovaya = 105.35;
-    private static final double garbageShaposhnikova = 105.62;
+    private static final double communalTariffPerWasteWaterTransp = 20.61;
+    private static final double communalTariffWasteWaterTreatment = 31.22;
+    private static final double garbageSadovaya = 114.83;
+    private static final double garbageShaposhnikova = 114.83;
     private static final double majorRepairs = 457.74;
 
 //========================== Electricity data ==========================
@@ -45,9 +45,9 @@ public class Main {
     public static void main(String[] args) {
         while (true) {
             System.out.print("\nВведите номер объекта (Садовая 1 - 1; Шапошникова 7 - 2): ");
-            object = (new Scanner(System.in)).nextInt();
+            paymentAddress = (new Scanner(System.in)).nextInt();
 
-            if (object == 1 || object == 2) {
+            if (paymentAddress == 1 || paymentAddress == 2) {
                 System.out.println("\n======Вводите показания целым числом (без дополнительных знаков)======\n");
 
                 try {
@@ -81,7 +81,7 @@ public class Main {
 
 
     private static void gas() {
-        if (object == 1 || object == 2) {
+        if (paymentAddress == 1 || paymentAddress == 2) {
             int consumptionOfCubGas = newInductGas - lastInductGas;
             double toPayForGas = consumptionOfCubGas * gasPricePerCub;
             System.out.println("Газа израсходовано - " + consumptionOfCubGas + " куб.," + " к оплате за газ - "
@@ -102,7 +102,7 @@ public class Main {
 
     private static void water() {
 
-        if (object == 1) {
+        if (paymentAddress == 1) {
             waterPrice();
             double wasteWaterTransp = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffPerWasteWaterTransp;
             double wasteWaterTreatment = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffWasteWaterTreatment;
@@ -115,7 +115,7 @@ public class Main {
                     + "\nЕжемес.взнос кап.рем.: " + majorRepairs);
             printWater();
         }
-        if (object == 2) {
+        if (paymentAddress == 2) {
             waterPrice();
             toPayForCommunService = coldWater + garbageShaposhnikova;
             System.out.println("Стоимость Хол.Вода: " + NumberFormat.getNumberFormat(coldWater) + '\n' + "Стоимость Обращение с ТКО: "
@@ -130,7 +130,7 @@ public class Main {
     }
 
     private static void electricity() {
-        if (object == 1) {
+        if (paymentAddress == 1) {
             electricConsumption = newInductElectricity - lastInductElectricity;
             if (electricConsumption <= socialNormForElectricitySadovaya) {
                 toPayForElectric = electricConsumption * electricityTariffWithinNormalLimits;
@@ -143,7 +143,7 @@ public class Main {
             }
         }
 
-        if (object == 2) {
+        if (paymentAddress == 2) {
             electricConsumption = newInductElectricity - lastInductElectricity;
             if (electricConsumption <= socialNormForElectricityShaposhnikova) {
                 toPayForElectric = electricConsumption * electricityTariffWithinNormalLimits;
