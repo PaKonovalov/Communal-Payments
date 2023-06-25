@@ -8,14 +8,14 @@ public class Main {
 
 //============================== Gas data ==============================
 
-    private static int lastInducatGas;
-    private static int newInducatGas;
+    private static int lastInductGas;
+    private static int newInductGas;
     private static final double gasPricePerCub = 7.328;
 
 //============================= Water data =============================
 
-    private static int lastInducatWater;
-    private static int newInducatWater;
+    private static int lastInductWater;
+    private static int newInductWater;
     private static int consumptionOfCubForWater;
     private static double toPayForCommunService;
     private static double coldWater;
@@ -31,8 +31,8 @@ public class Main {
 //TODO При оплате за электро энергию учитесть показатель "socialNormForElectricitySadovaya"
 // т.к. при смене времени года меняется норма расхода в пределах социальной нормы
 
-    private static int lastInducatioElectricity;
-    private static int newInducationElectricity;
+    private static int lastInductElectricity;
+    private static int newInductElectricity;
     private static double electricConsumption;
     private static double toPayForElectric;
     private static final int socialNormForElectricitySadovaya = 106;
@@ -52,19 +52,19 @@ public class Main {
 
                 try {
                     System.out.print("Введите предыдущие показания за газ: ");
-                    lastInducatGas = (new Scanner(System.in)).nextInt();
+                    lastInductGas = (new Scanner(System.in)).nextInt();
                     System.out.print("Введите текущие показания за газ: ");
-                    newInducatGas = (new Scanner(System.in)).nextInt();
+                    newInductGas = (new Scanner(System.in)).nextInt();
 
                     System.out.print("Введите предыдущие показания за воду: ");
-                    lastInducatWater = (new Scanner(System.in)).nextInt();
+                    lastInductWater = (new Scanner(System.in)).nextInt();
                     System.out.print("Введите текущие показания за воду: ");
-                    newInducatWater = (new Scanner(System.in)).nextInt();
+                    newInductWater = (new Scanner(System.in)).nextInt();
 
                     System.out.print("Введите предыдущие показания за свет: ");
-                    lastInducatioElectricity = (new Scanner(System.in)).nextInt();
+                    lastInductElectricity = (new Scanner(System.in)).nextInt();
                     System.out.print("Введите текущие показания за свет: ");
-                    newInducationElectricity = (new Scanner(System.in)).nextInt();
+                    newInductElectricity = (new Scanner(System.in)).nextInt();
                 } catch (InputMismatchException inputMismatchException) {
                     System.out.println("\n======Введите показания корректно======");
                     continue;
@@ -82,7 +82,7 @@ public class Main {
 
     private static void gas() {
         if (object == 1 || object == 2) {
-            int consumptionOfCubGas = newInducatGas - lastInducatGas;
+            int consumptionOfCubGas = newInductGas - lastInductGas;
             double toPayForGas = consumptionOfCubGas * gasPricePerCub;
             System.out.println("Газа израсходовано - " + consumptionOfCubGas + " куб.," + " к оплате за газ - "
                     + NumberFormat.getNumberFormat(toPayForGas) + " руб.");
@@ -96,7 +96,7 @@ public class Main {
     }
 
     private static void waterPrice() {
-        consumptionOfCubForWater = newInducatWater - lastInducatWater;
+        consumptionOfCubForWater = newInductWater - lastInductWater;
         coldWater = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffPerColdWater;
     }
 
@@ -131,7 +131,7 @@ public class Main {
 
     private static void electricity() {
         if (object == 1) {
-            electricConsumption = newInducationElectricity - lastInducatioElectricity;
+            electricConsumption = newInductElectricity - lastInductElectricity;
             if (electricConsumption <= socialNormForElectricitySadovaya) {
                 toPayForElectric = electricConsumption * electricityTariffWithinNormalLimits;
                 electricityPrint();
@@ -144,7 +144,7 @@ public class Main {
         }
 
         if (object == 2) {
-            electricConsumption = newInducationElectricity - lastInducatioElectricity;
+            electricConsumption = newInductElectricity - lastInductElectricity;
             if (electricConsumption <= socialNormForElectricityShaposhnikova) {
                 toPayForElectric = electricConsumption * electricityTariffWithinNormalLimits;
                 electricityPrint();
