@@ -11,13 +11,14 @@ public class Main {
     private static int lastInductGas;
     private static int newInductGas;
     private static final double gasPricePerCub = 7.328;
+    private static double toPayForCommunService;
 
 //============================= Water data =============================
 
     private static int lastInductWater;
     private static int newInductWater;
     private static int consumptionOfCubForWater;
-    private static double toPayForCommunService;
+    private static double toPayForGas;
     private static double coldWater;
     private static final double amountOfUtilityRes = 0.1146;
     private static final double communalTariffPerColdWater = 61.33;
@@ -40,7 +41,9 @@ public class Main {
     private static final double electricityTariffWithinNormalLimits = 4.42;
     private static final double electricityTariffIsHigherThanNormal = 6.18;
 
-//=======================================================================
+//========================== Internet ==========================
+
+    private static final int internet = 500;
 
     public static void main(String[] args) {
         while (true) {
@@ -76,6 +79,7 @@ public class Main {
             gas();
             water();
             electricity();
+            totalAmountAndMessage();
         }
     }
 
@@ -83,7 +87,7 @@ public class Main {
     private static void gas() {
         if (paymentAddress == 1 || paymentAddress == 2) {
             int consumptionOfCubGas = newInductGas - lastInductGas;
-            double toPayForGas = consumptionOfCubGas * gasPricePerCub;
+            toPayForGas = consumptionOfCubGas * gasPricePerCub;
             System.out.println("Газа израсходовано - " + consumptionOfCubGas + " куб.," + " к оплате за газ - "
                     + NumberFormat.getNumberFormat(toPayForGas) + " руб.");
         }
@@ -154,6 +158,26 @@ public class Main {
                         * electricityTariffWithinNormalLimits);
                 electricityPrint();
             }
+        }
+    }
+
+
+    private static void totalAmountAndMessage() {
+        if (paymentAddress == 1){
+            double total = NumberFormat.getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas - majorRepairs)
+                                                        + internet;
+            System.out.println("\nПривет.\n" +
+                               "Расчет коммуналки:\n" +
+                               "Газ: " + NumberFormat.getNumberFormat(toPayForGas) + "\n" +
+                               "Комун.услуги: " + NumberFormat.getNumberFormat((toPayForCommunService - majorRepairs)) + "\n" +
+                               "Электроэнергия: " + NumberFormat.getNumberFormat(toPayForElectric) + "\n" +
+                               "Интернет: " + internet + "\n" +
+                               "Итого: " + total);
+        }
+        if (paymentAddress == 2){
+            double total = NumberFormat.getNumberFormat(toPayForElectric) + NumberFormat.getNumberFormat(toPayForCommunService)
+                    + NumberFormat.getNumberFormat(toPayForGas);
+            System.out.println("Итоговая сумма составляет " + total);
         }
     }
 }
