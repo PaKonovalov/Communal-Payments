@@ -11,14 +11,14 @@ public class Main {
     private static int lastInductGas;
     private static int newInductGas;
     private static final double gasPricePerCub = 7.328;
-    private static double toPayForCommunService;
+    private static double toPayForGas;
 
 //============================= Water data =============================
 
     private static int lastInductWater;
     private static int newInductWater;
     private static int consumptionOfCubForWater;
-    private static double toPayForGas;
+    private static double toPayForCommunService;
     private static double coldWater;
     private static final double amountOfUtilityRes = 0.1146;
     private static final double communalTariffPerColdWater = 61.33;
@@ -82,7 +82,6 @@ public class Main {
             totalAmountAndMessage();
         }
     }
-
 
     private static void gas() {
         if (paymentAddress == 1 || paymentAddress == 2) {
