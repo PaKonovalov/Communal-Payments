@@ -161,7 +161,6 @@ public class Main {
         }
     }
 
-
     private static void totalAmountAndMessage() {
         if (paymentAddress == 1){
             double total = NumberFormat.getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas - majorRepairs)
@@ -174,6 +173,7 @@ public class Main {
                                "Интернет: " + internet + "\n" +
                                "Итого: " + total);
         }
+
         if (paymentAddress == 2){
             double total = NumberFormat.getNumberFormat(toPayForElectric) + NumberFormat.getNumberFormat(toPayForCommunService)
                     + NumberFormat.getNumberFormat(toPayForGas);
