@@ -167,7 +167,7 @@ public class Main {
             System.out.println("\nПривет.\n" +
                                "Расчет коммуналки:\n" +
                                "Газ: " + NumberFormat.getNumberFormat(toPayForGas) + "\n" +
-                               "Комун.услуги: " + NumberFormat.getNumberFormat((toPayForCommunService - majorRepairs)) + "\n" +
+                               "Комун.услуги (с вычетом за кап.ремонт): " + NumberFormat.getNumberFormat((toPayForCommunService - majorRepairs)) + "\n" +
                                "Электроэнергия: " + NumberFormat.getNumberFormat(toPayForElectric) + "\n" +
                                "Интернет: " + internet + "\n" +
                                "Итого: " + total);
