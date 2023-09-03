@@ -44,6 +44,7 @@ public class Main {
 //========================== Internet ==========================
 
     private static final int internet = 500;
+    private static final int phone = 250;
 
     public static void main(String[] args) {
         while (true) {
@@ -174,7 +175,7 @@ public class Main {
         }
 
         if (paymentAddress == 2){
-            double total = NumberFormat.getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas);
+            double total = NumberFormat.getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas + phone);
             System.out.println("Привет. За коммуналку получилось: " + total);
         }
     }
