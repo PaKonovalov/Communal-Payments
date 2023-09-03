@@ -174,8 +174,7 @@ public class Main {
         }
 
         if (paymentAddress == 2){
-            double total = NumberFormat.getNumberFormat(toPayForElectric) + NumberFormat.getNumberFormat(toPayForCommunService)
-                    + NumberFormat.getNumberFormat(toPayForGas);
+            double total = NumberFormat.getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas);
             System.out.println("Привет. За коммуналку получилось: " + total);
         }
     }
