@@ -29,7 +29,7 @@ public class Main {
     private static final double majorRepairs = 457.74;
 
 //========================== Electricity data ==========================
-//TODO При оплате за электро энергию учитесть показатель "socialNormForElectricitySadovaya"
+//TODO При оплате за электро энергию учесть показатель "socialNormForElectricitySadovaya"
 // т.к. при смене времени года меняется норма расхода в пределах социальной нормы
 
     private static int lastInductElectricity;
