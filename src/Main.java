@@ -25,7 +25,7 @@ public class Main {
     private static final double communalTariffPerWasteWaterTransp = 20.61;
     private static final double communalTariffWasteWaterTreatment = 31.22;
     private static final double garbageSadovaya = 114.83;
-    private static final double garbageShaposhnikova = 114.83;
+    private static final double garbageShaposhnikova = 116.74;
     private static final double majorRepairs = 457.74;
 
 //========================== Electricity data ==========================
