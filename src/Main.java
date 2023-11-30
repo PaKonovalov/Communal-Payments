@@ -36,10 +36,10 @@ public class Main {
     private static int newInductElectricity;
     private static double electricConsumption;
     private static double toPayForElectric;
-    private static final int socialNormForElectricitySadovaya = 106;
+    private static final int socialNormForElectricitySadovaya = 156;
     private static final int socialNormForElectricityShaposhnikova = 236;
-    private static final double electricityTariffWithinNormalLimits = 4.42;
-    private static final double electricityTariffIsHigherThanNormal = 6.18;
+    private static final double electricityTariffWithinNormalLimits = 4.81;
+    private static final double electricityTariffIsHigherThanNormal = 6.50;
 
 //========================== Internet ==========================
 
