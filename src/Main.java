@@ -43,7 +43,7 @@ public class Main {
 
 //========================== Internet ==========================
 
-    private static final int internet = 500;
+    private static final int internet = 530;
     private static final int phone = 250;
 
     public static void main(String[] args) {
