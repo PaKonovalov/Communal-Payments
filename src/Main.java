@@ -10,7 +10,7 @@ public class Main {
 
     private static int lastInductGas;
     private static int newInductGas;
-    private static final double gasPricePerCub = 7.328;
+    private static final double gasPricePerCub = 8.050;
     private static double toPayForGas;
 
 //============================= Water data =============================
