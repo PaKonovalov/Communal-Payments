@@ -38,8 +38,8 @@ public class Main {
     private static double toPayForElectric;
     private static final int socialNormForElectricitySadovaya = 156;
     private static final int socialNormForElectricityShaposhnikova = 236;
-    private static final double electricityTariffWithinNormalLimits = 4.81;
-    private static final double electricityTariffIsHigherThanNormal = 6.73;
+    private static final double electricityTariffWithinNormalLimits = 5.24;
+    private static final double electricityTariffIsHigherThanNormal = 7.32;
 
 //========================== Internet ==========================
 
