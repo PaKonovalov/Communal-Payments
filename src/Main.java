@@ -21,12 +21,12 @@ public class Main {
     private static double toPayForCommunService;
     private static double coldWater;
     private static final double amountOfUtilityRes = 0.1146;
-    private static final double communalTariffPerColdWater = 61.33;
-    private static final double communalTariffPerWasteWaterTransp = 20.61;
-    private static final double communalTariffWasteWaterTreatment = 31.22;
-    private static final double garbageSadovaya = 114.83;
-    private static final double garbageShaposhnikova = 116.74;
-    private static final double majorRepairs = 457.74;
+    private static final double communalTariffPerColdWater = 67.15;
+    private static final double communalTariffPerWasteWaterTransp = 22.56;
+    private static final double communalTariffWasteWaterTreatment = 34.18;
+    private static final double garbageSadovaya = 122.13;
+    private static final double garbageShaposhnikova = 127.83;
+    private static final double majorRepairs = 511.10;
 
 //========================== Electricity data ==========================
 //TODO При оплате за электро энергию учесть показатель "socialNormForElectricitySadovaya"
