@@ -1,4 +1,3 @@
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,7 +19,6 @@ public class Main {
     private static int consumptionOfCubForWater;
     private static double toPayForCommunService;
     private static double coldWater;
-    private static final double amountOfUtilityRes = 0.1146;
     private static final double communalTariffPerColdWater = 67.15;
     private static final double communalTariffPerWasteWaterTransp = 22.56;
     private static final double communalTariffWasteWaterTreatment = 34.18;
@@ -41,7 +39,7 @@ public class Main {
     private static final double electricityTariffWithinNormalLimits = 5.24;
     private static final double electricityTariffIsHigherThanNormal = 7.32;
 
-//========================== Internet ==========================
+//========================== Communication ==========================
 
     private static final int internet = 530;
     private static final int phone = 250;
@@ -95,21 +93,21 @@ public class Main {
 
     private static void printWater() {
 
-        System.out.println("Воды израсходовано - " + consumptionOfCubForWater + " куб.," + " к оплате за коммунальные услуги - "
-                + NumberFormat.getNumberFormat(toPayForCommunService) + " руб.");
+        System.out.println("Воды израсходовано - " + consumptionOfCubForWater + " куб.," +
+                " к оплате за коммунальные услуги - " + NumberFormat.getNumberFormat(toPayForCommunService) + " руб.");
     }
 
     private static void waterPrice() {
         consumptionOfCubForWater = newInductWater - lastInductWater;
-        coldWater = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffPerColdWater;
+        coldWater = consumptionOfCubForWater * communalTariffPerColdWater;
     }
 
     private static void water() {
 
         if (paymentAddress == 1) {
             waterPrice();
-            double wasteWaterTransp = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffPerWasteWaterTransp;
-            double wasteWaterTreatment = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffWasteWaterTreatment;
+            double wasteWaterTransp = consumptionOfCubForWater * communalTariffPerWasteWaterTransp;
+            double wasteWaterTreatment = consumptionOfCubForWater * communalTariffWasteWaterTreatment;
 
             toPayForCommunService = coldWater + wasteWaterTreatment + wasteWaterTransp + garbageSadovaya + majorRepairs;
             System.out.println("Стоимость Хол.Вода: " + NumberFormat.getNumberFormat(coldWater)
@@ -122,15 +120,15 @@ public class Main {
         if (paymentAddress == 2) {
             waterPrice();
             toPayForCommunService = coldWater + garbageShaposhnikova;
-            System.out.println("Стоимость Хол.Вода: " + NumberFormat.getNumberFormat(coldWater) + '\n' + "Стоимость Обращение с ТКО: "
-                    + NumberFormat.getNumberFormat(garbageShaposhnikova));
+            System.out.println("Стоимость Хол.Вода: " + NumberFormat.getNumberFormat(coldWater) + '\n' +
+                    "Стоимость Обращение с ТКО: " + NumberFormat.getNumberFormat(garbageShaposhnikova));
             printWater();
         }
     }
 
     public static void electricityPrint() {
-        System.out.println("Электроэнергии израсходовано - " + electricConsumption + " кВт.," + " к оплате за электроэнергию - "
-                + NumberFormat.getNumberFormat(toPayForElectric) + " руб.");
+        System.out.println("Электроэнергии израсходовано - " + electricConsumption + " кВт.," +
+                " к оплате за электроэнергию - " + NumberFormat.getNumberFormat(toPayForElectric) + " руб.");
     }
 
     private static void electricity() {
@@ -141,8 +139,8 @@ public class Main {
                 electricityPrint();
             } else {
                 double excessConsumptionElectric = electricConsumption - socialNormForElectricitySadovaya;
-                toPayForElectric = (excessConsumptionElectric * electricityTariffIsHigherThanNormal) + (socialNormForElectricitySadovaya
-                        * electricityTariffWithinNormalLimits);
+                toPayForElectric = (excessConsumptionElectric * electricityTariffIsHigherThanNormal) +
+                        (socialNormForElectricitySadovaya * electricityTariffWithinNormalLimits);
                 electricityPrint();
             }
         }
@@ -154,28 +152,30 @@ public class Main {
                 electricityPrint();
             } else {
                 double excessConsumptionElectric = electricConsumption - socialNormForElectricityShaposhnikova;
-                toPayForElectric = (excessConsumptionElectric * electricityTariffIsHigherThanNormal) + (socialNormForElectricityShaposhnikova
-                        * electricityTariffWithinNormalLimits);
+                toPayForElectric = (excessConsumptionElectric * electricityTariffIsHigherThanNormal) +
+                        (socialNormForElectricityShaposhnikova * electricityTariffWithinNormalLimits);
                 electricityPrint();
             }
         }
     }
 
     private static void totalAmountAndMessage() {
-        if (paymentAddress == 1){
-            double total = NumberFormat.getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas - majorRepairs)
-                                                        + internet;
+        if (paymentAddress == 1) {
+            double total = NumberFormat
+                    .getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas - majorRepairs) + internet;
             System.out.println("\nПривет.\n" +
-                               "Расчет коммуналки:\n" +
-                               "Газ: " + NumberFormat.getNumberFormat(toPayForGas) + "\n" +
-                               "Комун.услуги (с вычетом за кап.ремонт): " + NumberFormat.getNumberFormat((toPayForCommunService - majorRepairs)) + "\n" +
-                               "Электроэнергия: " + NumberFormat.getNumberFormat(toPayForElectric) + "\n" +
-                               "Интернет: " + internet + "\n" +
-                               "Итого: " + total);
+                    "Расчет коммуналки:\n" +
+                    "Газ: " + NumberFormat.getNumberFormat(toPayForGas) + "\n" +
+                    "Комун.услуги (с вычетом за кап.ремонт): " + NumberFormat
+                    .getNumberFormat((toPayForCommunService - majorRepairs)) + "\n" +
+                    "Электроэнергия: " + NumberFormat.getNumberFormat(toPayForElectric) + "\n" +
+                    "Интернет: " + internet + "\n" +
+                    "Итого: " + total);
         }
 
-        if (paymentAddress == 2){
-            double total = NumberFormat.getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas + phone);
+        if (paymentAddress == 2) {
+            double total = NumberFormat
+                    .getNumberFormat(toPayForElectric + toPayForCommunService + toPayForGas + phone);
             System.out.println("Привет. За коммуналку получилось: " + total);
         }
     }
