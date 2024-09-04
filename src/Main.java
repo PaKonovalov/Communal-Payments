@@ -19,6 +19,7 @@ public class Main {
     private static int consumptionOfCubForWater;
     private static double toPayForCommunService;
     private static double coldWater;
+    private static final double amountOfUtilityRes = 0.1146;
     private static final double communalTariffPerColdWater = 67.15;
     private static final double communalTariffPerWasteWaterTransp = 22.56;
     private static final double communalTariffWasteWaterTreatment = 34.18;
@@ -92,22 +93,20 @@ public class Main {
     }
 
     private static void printWater() {
-
         System.out.println("Воды израсходовано - " + consumptionOfCubForWater + " куб.," +
                 " к оплате за коммунальные услуги - " + NumberFormat.getNumberFormat(toPayForCommunService) + " руб.");
     }
 
     private static void waterPrice() {
         consumptionOfCubForWater = newInductWater - lastInductWater;
-        coldWater = consumptionOfCubForWater * communalTariffPerColdWater;
+        coldWater = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffPerColdWater;
     }
 
     private static void water() {
-
         if (paymentAddress == 1) {
             waterPrice();
-            double wasteWaterTransp = consumptionOfCubForWater * communalTariffPerWasteWaterTransp;
-            double wasteWaterTreatment = consumptionOfCubForWater * communalTariffWasteWaterTreatment;
+            double wasteWaterTransp = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffPerWasteWaterTransp;
+            double wasteWaterTreatment = (consumptionOfCubForWater + amountOfUtilityRes) * communalTariffWasteWaterTreatment;
 
             toPayForCommunService = coldWater + wasteWaterTreatment + wasteWaterTransp + garbageSadovaya + majorRepairs;
             System.out.println("Стоимость Хол.Вода: " + NumberFormat.getNumberFormat(coldWater)
