@@ -52,7 +52,6 @@ public class Main {
 
             if (paymentAddress == 1 || paymentAddress == 2) {
                 System.out.println("\n======Вводите показания целым числом (без дополнительных знаков)======\n");
-
                 try {
                     System.out.print("Введите предыдущие показания за газ: ");
                     lastInductGas = (new Scanner(System.in)).nextInt();
